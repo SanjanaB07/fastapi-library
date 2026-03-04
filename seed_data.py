@@ -1,4 +1,3 @@
-"""Seed the database with example authors, categories, and books."""
 import sys
 from database import SessionLocal
 from models import Author, Category, Book

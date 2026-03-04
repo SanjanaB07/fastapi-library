@@ -1,9 +1,6 @@
-"""Pydantic schemas for request/response validation."""
 from typing import Optional
 from pydantic import BaseModel, Field
 
-
-# ----- Author -----
 class AuthorBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=255)
 
@@ -26,8 +23,6 @@ class AuthorResponse(AuthorBase):
 class AuthorWithBooks(AuthorResponse):
     book_count: int = 0
 
-
-# ----- Category -----
 class CategoryBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
 
@@ -42,8 +37,6 @@ class CategoryResponse(CategoryBase):
     class Config:
         from_attributes = True
 
-
-# ----- Book -----
 class BookBase(BaseModel):
     title: str = Field(..., min_length=1, max_length=500)
     isbn: Optional[str] = Field(None, max_length=20)

@@ -1,11 +1,9 @@
-"""SQLAlchemy ORM models for the library database."""
 from sqlalchemy import Column, Integer, String, ForeignKey, Table, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 from database import Base
 
-# Many-to-many: books and authors
 book_author = Table(
     "book_author",
     Base.metadata,
@@ -39,7 +37,7 @@ class Book(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(500), nullable=False, index=True)
     isbn = Column(String(20), unique=True, index=True, nullable=True)
-    publication_year = Column(Integer, nullable=True)  # nullable for "all have year?" check
+    publication_year = Column(Integer, nullable=True)
     category_id = Column(Integer, ForeignKey("categories.id", ondelete="SET NULL"), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
